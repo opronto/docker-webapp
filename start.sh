@@ -2,10 +2,10 @@
 
 # Create webapp config from ENV variables
 if [ "$NODE_ENV" == "development" ]; then
-  ./build-config.sh > public/app.config.js
-  yarn start
+  /home/build-config.sh > /src/public/app.config.js
+  yarn --cwd /src start
 else
-  ./build-config.sh > /app/app.config.js
+  /home/build-config.sh > /app/app.config.js
   # Start nginx in foreground
   nginx -g 'daemon off;'
 fi

@@ -4,16 +4,15 @@ ENV PORT=80 NODE_ENV=development TS_NODE_PRETTY=true
 RUN apk add libcrypto1.1 --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main && \
     apk add watchman --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing && \
     apk -U --no-cache add bash
+CMD ["/home/start.sh"]
 WORKDIR /src
-CMD ["./start.sh"]
-COPY . .
+COPY *.sh /home/
 
 # Production
 FROM nginx:1.17-alpine as production
-WORKDIR /home
+CMD ["/home/start.sh"]
 ENV NODE_ENV=production PORT=80
 RUN apk -U --no-cache add bash
 RUN mkdir /app
-CMD ["./start.sh"]
-COPY --from=development /src /home/
-RUN mv /home/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY *.sh /home/

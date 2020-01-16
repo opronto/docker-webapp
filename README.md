@@ -20,7 +20,7 @@ RUN yarn build
 
 # PRODUCTION
 FROM opronto/webapp:prod as production
-COPY .env /home/
+COPY .env /src/
 COPY --from=production-build /src/build /app/
 ```
 
