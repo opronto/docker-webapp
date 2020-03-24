@@ -2,8 +2,13 @@
 set -e
 set -x
 
-docker build -t opronto/webapp:dev --target development .
-docker push opronto/webapp:dev
+# Bump this when doing a new release
+VERSION=1.0.0
 
-docker build -t opronto/webapp:prod --target production .
-docker push opronto/webapp:prod
+echo "Deploying version $VERSION"
+
+docker build -t opronto/webapp:dev-${VERSION} --target development .
+docker push opronto/webapp:dev-${VERSION}
+
+docker build -t opronto/webapp:prod-${VERSION} --target production .
+docker push opronto/webapp:prod-${VERSION}

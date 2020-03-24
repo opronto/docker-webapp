@@ -26,6 +26,6 @@ COPY --from=production-build /src/build /app/
 
 ## New releases
 
-To build and push updates to docker hub:
+Bump the version number in release.sh, and push images to docker hub using
 
     ./release.sh
