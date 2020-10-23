@@ -3,12 +3,15 @@ set -e
 set -x
 
 # Bump this when doing a new release
-VERSION=1.3.0
+VERSION=2.3
 
 echo "Deploying version $VERSION"
 
-docker build -t opronto/webapp:dev-${VERSION} --target development .
-docker push opronto/webapp:dev-${VERSION}
+# IMG=registry.digitalocean.com/pronto/webapp
+IMG=opronto/webapp
 
-docker build -t opronto/webapp:prod-${VERSION} --target production .
-docker push opronto/webapp:prod-${VERSION}
+docker build -t $IMG:dev-${VERSION} --target development .
+docker push $IMG:dev-${VERSION}
+
+docker build -t $IMG:prod-${VERSION} --target production .
+docker push $IMG:prod-${VERSION}
