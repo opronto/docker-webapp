@@ -3,7 +3,7 @@ set -e
 set -x
 
 # Bump this when doing a new release
-VERSION=2.3
+VERSION=2.5
 
 echo "Deploying version $VERSION"
 
