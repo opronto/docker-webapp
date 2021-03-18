@@ -6,6 +6,7 @@ if [ "$NODE_ENV" == "development" ]; then
   yarn --cwd /src start
 else
   /home/build-config.sh > /app/app.config.js
+  echo Build: $BUILD_ID Git: $GIT_SHA
   # Start nginx in foreground
   nginx -g 'daemon off;'
 fi
